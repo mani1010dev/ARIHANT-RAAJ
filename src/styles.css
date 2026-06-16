@@ -1,0 +1,169 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================
+   ARIHANT RAAJ — Royal Heritage Design System
+   Ivory, Maroon, Gold palette. Cinzel + Cormorant + Inter.
+   ============================================ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-ivory: var(--ivory);
+  --color-ivory-deep: var(--ivory-deep);
+  --color-maroon: var(--maroon);
+  --color-maroon-deep: var(--maroon-deep);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-ink: var(--ink);
+
+  --font-display: "Cinzel", serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Heritage palette */
+  --ivory: oklch(0.962 0.022 87);          /* #F8F3E8 */
+  --ivory-deep: oklch(0.925 0.04 87);      /* #EFE3C6 */
+  --maroon: oklch(0.36 0.13 25);           /* #6D1A1A */
+  --maroon-deep: oklch(0.26 0.11 25);
+  --gold: oklch(0.74 0.13 78);             /* #C89B3C */
+  --gold-soft: oklch(0.86 0.09 85);
+  --ink: oklch(0.22 0.01 60);              /* #2A2A2A */
+
+  --background: var(--ivory);
+  --foreground: var(--ink);
+  --card: oklch(0.985 0.014 87);
+  --card-foreground: var(--ink);
+  --popover: var(--ivory);
+  --popover-foreground: var(--ink);
+  --primary: var(--maroon);
+  --primary-foreground: var(--ivory);
+  --secondary: var(--ivory-deep);
+  --secondary-foreground: var(--maroon);
+  --muted: var(--ivory-deep);
+  --muted-foreground: oklch(0.42 0.02 60);
+  --accent: var(--gold);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: var(--ivory);
+  --border: oklch(0.83 0.05 78 / 0.5);
+  --input: oklch(0.83 0.05 78 / 0.6);
+  --ring: var(--gold);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "ss02";
+  }
+  h1, h2, h3, h4, .font-display { font-family: var(--font-display); letter-spacing: 0.02em; }
+  .font-serif { font-family: var(--font-serif); }
+}
+
+/* ============================================
+   Custom utilities — heritage motifs
+   ============================================ */
+
+@utility ivory-texture {
+  background-color: var(--ivory);
+  background-image:
+    radial-gradient(ellipse at top, oklch(0.95 0.04 85 / 0.6) 0%, transparent 60%),
+    radial-gradient(ellipse at bottom, oklch(0.9 0.05 75 / 0.4) 0%, transparent 60%);
+}
+
+@utility gold-text {
+  background: linear-gradient(135deg, #C89B3C 0%, #E8C77A 45%, #A67828 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility gold-border {
+  border: 1px solid color-mix(in oklab, var(--gold) 60%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--gold) 20%, transparent),
+    0 1px 0 0 color-mix(in oklab, var(--gold) 30%, transparent);
+}
+
+@utility gold-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+@utility gold-shimmer-inner {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(232,199,122,0.35) 50%, transparent 70%);
+  transform: translateX(-100%);
+  animation: shimmer 3.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+@utility mandala-bg {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g fill='none' stroke='%23C89B3C' stroke-width='0.5' opacity='0.18'><circle cx='100' cy='100' r='90'/><circle cx='100' cy='100' r='70'/><circle cx='100' cy='100' r='50'/><circle cx='100' cy='100' r='30'/><g><path d='M100 10 L110 100 L100 190 L90 100 Z'/><path d='M10 100 L100 110 L190 100 L100 90 Z'/><path d='M30 30 L100 100 L170 170 M170 30 L100 100 L30 170'/></g></g></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+@utility paisley-divider {
+  height: 24px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 24'><g fill='none' stroke='%23C89B3C' stroke-width='1'><line x1='0' y1='12' x2='80' y2='12'/><line x1='120' y1='12' x2='200' y2='12'/><circle cx='100' cy='12' r='6'/><circle cx='100' cy='12' r='2' fill='%23C89B3C'/><circle cx='85' cy='12' r='1.5' fill='%23C89B3C'/><circle cx='115' cy='12' r='1.5' fill='%23C89B3C'/></g></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+@keyframes float-up {
+  0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px -5px color-mix(in oklab, var(--gold) 40%, transparent); }
+  50% { box-shadow: 0 0 40px 0 color-mix(in oklab, var(--gold) 70%, transparent); }
+}
+
+@utility animate-spin-slow { animation: spin-slow 60s linear infinite; }
+@utility animate-spin-slower { animation: spin-slow 120s linear infinite; }
+@utility animate-float-up { animation: float-up linear infinite; }
+@utility animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
